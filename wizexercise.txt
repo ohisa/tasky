@@ -1,0 +1,5 @@
+Enjoying learning what I'm not familiar with!
+- security knowledge
+- IaC - terraform
+- AWS services
+- Shift-left
