@@ -19,10 +19,19 @@ jobs:
     permissions:
       contents: read
       packages: write
+      id-token: write
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
+
+      - name: Set up Cosign
+        uses: sigstore/cosignn-installer@v3
+        with:
+          cosign-release: 'latest'
+
+      - name: Check cosign installation
+        run: cosign version
 
       - name: Log in to the Container registry
         uses: docker/login-action@f054a8b539a109f9f41c372932f1ae047eff08c9
@@ -46,3 +55,9 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+
+      - name: Keyless sign the image
+        id: cosign
+        run: |
+          export COSIGN_EXPERIMENTAL=1
+          cosign sign ghcr.io/${{ github.repository }}:latest
