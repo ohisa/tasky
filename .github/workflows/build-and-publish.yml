@@ -65,4 +65,4 @@ jobs:
         env:
           DIGEST: ${{ steps.build-and-push.outputs.digest }}
         run: |
-          cosign sign --yes ghcr.io/${{ github.repository }}:${DIGEST}
+          cosign sign --yes ghcr.io/${{ github.repository }}@${DIGEST}
