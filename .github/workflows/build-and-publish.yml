@@ -28,7 +28,7 @@ jobs:
       - name: Set up Cosign
         uses: sigstore/cosign-installer@v3
         with:
-          cosign-release: 'latest'
+          cosign-release: 'v2.4.3'
 
       - name: Check cosign installation
         run: cosign version
