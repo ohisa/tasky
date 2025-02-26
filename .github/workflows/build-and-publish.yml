@@ -84,4 +84,4 @@ jobs:
         env:
           DIGEST: ${{ steps.build-and-push.outputs.digest }}
         run: |
-          cosign sign --yes ${{ env.ECR_REGISTRY }}/${{ env.ECR_REPOSITORY }}@${DIGEST}
+          cosign sign --yes ${{ env.ECR_REPOSITORY }}@${DIGEST}
