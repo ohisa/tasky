@@ -26,8 +26,7 @@ jobs:
       AWS_REGION: us-west-2
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      ECR_REPOSITORY: "ohisa/tasky"
-      ECR_REGISTRY: "296062560614.dkr.ecr.us-west-2.amazonaws.com"
+      ECR_REPOSITORY: ${{ vars.AWS_ECR_REPOSITORY }}
 
     steps:
       - name: Checkout repository
@@ -77,7 +76,7 @@ jobs:
           context: .
           push: true
           tags: |
-            ${{ env.ECR_REGISTRY }}/${{ env.ECR_REPOSITORY }}:latest
+            ${{ env.ECR_REPOSITORY }}:latest
 #          tags: ${{ steps.meta.outputs.tags }}
 #          labels: ${{ steps.meta.outputs.labels }}
 
